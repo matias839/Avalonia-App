@@ -1,11 +1,13 @@
-﻿namespace AvaloniaApplication1.ViewModels;
+﻿using AvaloniaApplication1.Views;
+
+namespace AvaloniaApplication1.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private string _greeting = "Mi primer programa en Avalonia";
+    private string _greeting = "Contador de clicks: ";
     
     private int _clickCount;
 
@@ -13,6 +15,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private void ChangeText()
     {
         _clickCount++;
-        Greeting = $"Has clickeado {_clickCount} veces";
+        Greeting = $"Contador de clicks: {_clickCount}";
+        
+        if (_clickCount >= 100)
+        {
+            Greeting = "¡Has alcanzado el límite de clicks!";
+            _clickCount = 100;
+        }
     }
 }
